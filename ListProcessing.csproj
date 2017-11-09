@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ListProcessing.StartUp</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,11 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AppendCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\InitialCommand.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
+    <Compile Include="Core\ConsoleManager.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Interfaces\ICommandInterpreter.cs" />
+    <Compile Include="Interfaces\IExecutable.cs" />
+    <Compile Include="Interfaces\IListRepossitory.cs" />
+    <Compile Include="Core\ListRepository.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
