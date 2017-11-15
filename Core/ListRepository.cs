@@ -19,7 +19,7 @@
 
         public void Reverse()
         {
-            throw new System.NotImplementedException();
+            workList.Reverse();
         }
 
         public void Insert(int index, string element)

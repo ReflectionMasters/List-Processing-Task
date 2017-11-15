@@ -49,6 +49,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\InitialCommand.cs" />
     <Compile Include="Commands\PrependCommand.cs" />
+    <Compile Include="Commands\ReverseCommand.cs" />
     <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\ConsoleManager.cs" />
     <Compile Include="Engine.cs" />
