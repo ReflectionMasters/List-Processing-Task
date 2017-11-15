@@ -14,7 +14,7 @@
 
         public void Prepend(string element)
         {
-            throw new System.NotImplementedException();
+            workList.Insert(0, element);
         }
 
         public void Reverse()
