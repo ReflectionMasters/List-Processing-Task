@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ListProcessing
 {
-    class Exceptions
+    public static class Exceptions
     {
+        public const string InvalidCommandException = "Error: invalid command";
     }
 }

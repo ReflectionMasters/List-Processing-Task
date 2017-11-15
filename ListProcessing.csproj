@@ -51,6 +51,7 @@
     <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\ConsoleManager.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Interfaces\ICommandInterpreter.cs" />
     <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="Interfaces\IListRepossitory.cs" />
