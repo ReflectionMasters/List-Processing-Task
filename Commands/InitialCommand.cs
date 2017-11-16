@@ -5,7 +5,8 @@
 
     public class InitialCommand : Command
     {
-        public InitialCommand(string element, IListRepossitory listRepossitory) : base(element, listRepossitory)
+        public InitialCommand(string element, IListRepossitory listRepossitory, int index) 
+            : base(element, listRepossitory, index)
         {
         }
 

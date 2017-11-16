@@ -16,7 +16,7 @@
             this.listRepository = listRepository;
         }
 
-        public IExecutable InterpretCommand(string command, string element)
+        public IExecutable InterpretCommand(string command, string element, int index)
         {
             var commandCompleteName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + commandSuffix;
 
@@ -33,7 +33,8 @@
             object[] commandParams =
             {
                 element,
-                this.listRepository
+                this.listRepository,
+                index
             };
 
             if (commandType == null)

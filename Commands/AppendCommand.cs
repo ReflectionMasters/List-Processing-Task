@@ -4,11 +4,13 @@
 
     public class AppendCommand : Command
     {
-        public AppendCommand(string element, IListRepossitory listRepository) 
-            : base (element, listRepository)
+        public AppendCommand(string element, IListRepossitory listRepository, int index) 
+            : base (element, listRepository, index)
         {
 
         }
+
+
         public override void Execute()
         {
             this.ListRepossitory.Append(this.Element);

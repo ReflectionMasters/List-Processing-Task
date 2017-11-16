@@ -24,19 +24,32 @@
                 {
                     var commandTokens = commandInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     var command = commandTokens[0];
-                    var element = commandTokens[1];
 
-                    if (commandTokens.Length == 3)
+                    var element = string.Empty;
+                    int index = -1;
+
+                    if (commandTokens.Length == 3 
+                        && command != "insert"
+                        && command != "delete")
                     {
                         command = string.Empty;
                         element = commandInput;
                     }
 
-                    this.Interpreter.InterpretCommand(command, element).Execute();
+                    if (int.TryParse(commandTokens[1], out index))
+                    {
+                        element = commandTokens[2];
+                    }
+                    else if(commandTokens.Length == 2)
+                    {
+                        element = commandTokens[1];
+                    }
+
+                    this.Interpreter.InterpretCommand(command, element, index).Execute();
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    ConsoleManager.WriteLine(ex.Message);
                 }
             }
         }

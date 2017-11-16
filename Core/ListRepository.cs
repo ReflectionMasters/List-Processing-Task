@@ -24,7 +24,7 @@
 
         public void Insert(int index, string element)
         {
-            throw new System.NotImplementedException();
+            workList.Insert(index, element);
         }
 
         public void Delete(int index)
