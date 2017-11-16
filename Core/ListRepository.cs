@@ -1,4 +1,6 @@
-﻿namespace ListProcessing
+﻿using System;
+
+namespace ListProcessing
 {
     using Interfaces;
     using System.Collections.Generic;
@@ -14,12 +16,12 @@
 
         public void Prepend(string element)
         {
-            throw new System.NotImplementedException();
+            workList.Insert(0, element);
         }
 
         public void Reverse()
         {
-            throw new System.NotImplementedException();
+            workList.Reverse();
         }
 
         public void Insert(int index, string element)
@@ -29,7 +31,14 @@
 
         public void Delete(int index)
         {
-            throw new System.NotImplementedException();
+	        if (index >= 0 && index < workList.Count)
+	        {
+		        workList.RemoveAt(index);
+	        }
+	        else
+	        {
+		        Console.WriteLine($"Error: invalid index < {index} >");
+	        }
         }
 
         public void RollLeft(string element)

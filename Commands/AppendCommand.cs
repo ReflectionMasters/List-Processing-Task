@@ -13,7 +13,7 @@
 
         public override void Execute()
         {
-            this.ListRepossitory.Append(this.Element);
+            this.ListRepossitory.Prepend(this.Element);
             this.ListRepossitory.PrintWorkingList();
         }
     }
