@@ -49,9 +49,10 @@
                         case "count":
                             throw new NotImplementedException();
                             break;
-
-                        case "reverse":
                         case "delete":
+                            index = int.Parse(commandTokens[1]);
+                            break;
+                        case "reverse":
                         case "sort":
                             break;
                         case "end":

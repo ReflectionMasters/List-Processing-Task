@@ -32,7 +32,7 @@
         {
             if (index < 0 || index > workList.Count - 1)
             {
-                ConsoleManager.WriteLine(String.Format(Exceptions.InvalidIndexException, index));
+                throw new ArgumentException(string.Format(Exceptions.InvalidIndexException, index));
             }
 
             workList.RemoveAt(index);
