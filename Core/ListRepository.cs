@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace ListProcessing
+﻿namespace ListProcessing
 {
+    using System;
     using Interfaces;
     using System.Collections.Generic;
 
@@ -31,14 +30,12 @@ namespace ListProcessing
 
         public void Delete(int index)
         {
-	        if (index >= 0 && index < workList.Count)
-	        {
-		        workList.RemoveAt(index);
-	        }
-	        else
-	        {
-		        Console.WriteLine($"Error: invalid index < {index} >");
-	        }
+            if (index < 0 || index > workList.Count - 1)
+            {
+                ConsoleManager.WriteLine(String.Format(Exceptions.InvalidIndexException, index));
+            }
+
+            workList.RemoveAt(index);
         }
 
         public void RollLeft(string element)

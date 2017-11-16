@@ -4,8 +4,8 @@ namespace ListProcessing.Commands
 {
 	class PrependCommand : Command
 	{
-		public PrependCommand(string element, IListRepossitory listRepository) 
-			: base (element, listRepository)
+		public PrependCommand(string element, IListRepossitory listRepository, int index) 
+			: base (element, listRepository, index)
 		{
 
 		}

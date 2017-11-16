@@ -4,8 +4,8 @@ namespace ListProcessing.Commands
 {
 	class ReverseCommand :Command
 	{
-		public ReverseCommand(string element, IListRepossitory listRepository) 
-			: base (element, listRepository)
+		public ReverseCommand(string element, IListRepossitory listRepository, int index) 
+			: base (element, listRepository, index)
 		{
 
 		}

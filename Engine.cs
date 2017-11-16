@@ -28,21 +28,39 @@
                     var element = string.Empty;
                     int index = -1;
 
-                    if (commandTokens.Length == 3 
-                        && command != "insert"
-                        && command != "delete")
-                    {
-                        command = string.Empty;
-                        element = commandInput;
-                    }
+                    // без reverse / delete / sоrt 
+                    //case защото не ни трябват параметри
 
-                    if (int.TryParse(commandTokens[1], out index))
+                    switch (command)
                     {
-                        element = commandTokens[2];
-                    }
-                    else if(commandTokens.Length == 2)
-                    {
-                        element = commandTokens[1];
+                        case "append":
+                            element = commandTokens[1];
+                            break;
+                        case "prepend":
+                            element = commandTokens[1];
+                            break;
+                        case "insert":
+                            index = int.Parse(commandTokens[1]);
+                            element = commandTokens[2];
+                            break;
+                        case "roll":
+                            throw new NotImplementedException();
+                            break;
+                        case "count":
+                            throw new NotImplementedException();
+                            break;
+
+                        case "reverse":
+                        case "delete":
+                        case "sort":
+                            break;
+                        case "end":
+                            throw new NotImplementedException();
+                            break;
+                        default:
+                            command = string.Empty;
+                            element = commandInput;
+                            break;
                     }
 
                     this.Interpreter.InterpretCommand(command, element, index).Execute();
