@@ -58,7 +58,7 @@
             this.workList.Sort();
         }
 
-        public int Count(string element)
+        public void Count(string element)
         {
             int counter = 0;
             
@@ -70,7 +70,7 @@
                 }
             }
 
-            return counter;
+            ConsoleManager.WriteLine(counter.ToString());
         }
 
         public void PrintWorkingList()
