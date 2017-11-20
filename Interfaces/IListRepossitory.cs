@@ -16,7 +16,7 @@
 
         void RollRight();
 
-        void Sort(string element);
+        void Sort();
 
         void Count(string element);
 

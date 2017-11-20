@@ -53,14 +53,14 @@
             workList.Insert(0,tmp);
         }
 
-        public void Sort(string element)
+        public void Sort()
         {
-            throw new System.NotImplementedException();
+            this.workList.Sort();
         }
 
         public void Count(string element)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void PrintWorkingList()
