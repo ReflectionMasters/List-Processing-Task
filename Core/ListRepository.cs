@@ -58,14 +58,26 @@
             this.workList.Sort();
         }
 
-        public void Count(string element)
+        public int Count(string element)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            
+            for (int i = 0; i < workList.Count; i++)
+            {
+                if (workList[i] == element)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
         }
 
         public void PrintWorkingList()
         {
             ConsoleManager.WriteLine(string.Join(" ", this.workList));
         }
+
+        
     }
 }

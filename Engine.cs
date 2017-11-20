@@ -56,7 +56,8 @@
                     element = commandTokens[2];
                     break;
                 case "count":
-                    throw new NotImplementedException();
+                    element = commandTokens[1];
+                    break;
                 case "delete":
                     index = int.Parse(commandTokens[1]);
                     break;
