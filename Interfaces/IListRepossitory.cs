@@ -12,9 +12,9 @@
 
         void Delete(int index);
 
-        void RollLeft(string element);
+        void RollLeft();
 
-        void RollRight(string element);
+        void RollRight();
 
         void Sort(string element);
 

@@ -3,6 +3,7 @@
     using System;
     using Interfaces;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ListRepository : IListRepossitory
     {
@@ -38,14 +39,18 @@
             workList.RemoveAt(index);
         }
 
-        public void RollLeft(string element)
+        public void RollLeft()
         {
-            throw new System.NotImplementedException();
+            string tmp = workList[0];
+            workList.RemoveAt(0);
+            workList.Add(tmp);
         }
 
-        public void RollRight(string element)
+        public void RollRight()
         {
-            throw new System.NotImplementedException();
+            string tmp = workList.Last();
+            workList.RemoveAt(workList.Count - 1);
+            workList.Insert(0,tmp);
         }
 
         public void Sort(string element)
