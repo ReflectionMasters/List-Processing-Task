@@ -14,63 +14,64 @@
             this.Interpreter = interpreter;
         }
 
-        public void Run()
+        public void Listen()
         {
-            string commandInput = string.Empty;
+            string commandInput = ConsoleManager.Read();
 
-            while ((commandInput = ConsoleManager.Read()) != EndCommand)
+            while (commandInput != EndCommand)
             {
                 try
                 {
-                    var commandTokens = commandInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    var command = commandTokens[0];
-
-                    var element = string.Empty;
-                    int index = -1;
-
-                    // без reverse / delete / sоrt 
-                    //case защото не ни трябват параметри
-
-                    switch (command)
-                    {
-                        case "append":
-                            element = commandTokens[1];
-                            break;
-                        case "prepend":
-                            element = commandTokens[1];
-                            break;
-                        case "insert":
-                            index = int.Parse(commandTokens[1]);
-                            element = commandTokens[2];
-                            break;
-                        case "roll":
-                            throw new NotImplementedException();
-                            break;
-                        case "count":
-                            throw new NotImplementedException();
-                            break;
-                        case "delete":
-                            index = int.Parse(commandTokens[1]);
-                            break;
-                        case "reverse":
-                        case "sort":
-                            break;
-                        case "end":
-                            throw new NotImplementedException();
-                            break;
-                        default:
-                            command = string.Empty;
-                            element = commandInput;
-                            break;
-                    }
-
-                    this.Interpreter.InterpretCommand(command, element, index).Execute();
+                    this.ParseCommand(commandInput);
                 }
                 catch (ArgumentException ex)
                 {
                     ConsoleManager.WriteLine(ex.Message);
                 }
+
+                commandInput = ConsoleManager.Read();
             }
+        }
+
+        private void ParseCommand(string commandInput)
+        {
+            var commandTokens = commandInput.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var command = commandTokens[0];
+
+            var element = string.Empty;
+            int index = -1;
+
+            // switch is without reverse / delete / sоrt 
+            // as we do not need parameters
+
+            switch (command)
+            {
+                case "append":
+                case "prepend":
+                case "roll":
+                    element = commandTokens[1];
+                    break;
+                case "insert":
+                    index = int.Parse(commandTokens[1]);
+                    element = commandTokens[2];
+                    break;
+                case "count":
+                    throw new NotImplementedException();
+                case "delete":
+                    index = int.Parse(commandTokens[1]);
+                    break;
+                case "reverse":
+                case "sort":
+                    break;
+                case "end":
+                    throw new NotImplementedException();
+                default:
+                    command = string.Empty;
+                    element = commandInput;
+                    break;
+            }
+
+            this.Interpreter.InterpretCommand(command, element, index).Execute();
         }
     }
 }
