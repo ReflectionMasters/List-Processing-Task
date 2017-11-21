@@ -1,5 +1,6 @@
 ﻿namespace ListProcessing
 {
+    using System;
     using Interfaces;
 
     public abstract class Command : IExecutable
@@ -13,6 +14,7 @@
             this.Index = index;
             this.Element = element;
             this.ListRepossitory = listRepossitory;
+            this.ParamsCount = 0;
         }
 
         protected string Element { get => this.element; set => this.element = value; }
@@ -20,6 +22,16 @@
         protected int Index { get => this.index; set => this.index = value; }
 
         protected IListRepossitory ListRepossitory { get => this.listRepossitory; set => this.listRepossitory = value; }
+
+        protected int ParamsCount { get; set; }
+
+        public virtual void ValidateParams(int parametersCount)
+        {
+            if (parametersCount != ParamsCount)
+            {
+                throw new ArgumentException(Exceptions.InvalidParametersException);
+            }
+        }
 
         public abstract void Execute();
     }
