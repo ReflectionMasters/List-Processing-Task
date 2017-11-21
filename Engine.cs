@@ -65,7 +65,9 @@
                 case "sort":
                     break;
                 case "end":
-                    throw new NotImplementedException();
+                    ConsoleManager.WriteLine("Finished");
+                    Environment.Exit(0);
+                    break;
                 default:
                     command = string.Empty;
                     element = commandInput;
