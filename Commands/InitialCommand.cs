@@ -1,20 +1,17 @@
 ﻿namespace ListProcessing.Commands
 {
-    using System;
-    using ListProcessing.Interfaces;
+    using Interfaces;
 
     public class InitialCommand : Command
     {
-        public InitialCommand(string element, IListRepossitory listRepossitory, int index) 
-            : base(element, listRepossitory, index)
+        public InitialCommand(string[] paramStrings, IListRepossitory listRepossitory) 
+            : base(paramStrings, listRepossitory)
         {
         }
 
         public override void Execute()
         {
-            var elements = this.Element.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var element in elements)
+            foreach (var element in this.ParamStrings)
             {
                 this.ListRepossitory.Append(element);
             }

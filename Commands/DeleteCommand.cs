@@ -2,16 +2,19 @@
 
 namespace ListProcessing.Commands
 {
-	class DeleteCommand : Command
+	class DeleteCommand : IndexCommand
 	{
-		public DeleteCommand(string element, IListRepossitory listRepository, int index) 
-			: base (element, listRepository, index)
-		{
+	    private const int ExpectedParamsCount = 1;
 
-		}
+        public DeleteCommand(string[] paramStrings, IListRepossitory listRepository) 
+			: base (paramStrings, listRepository)
+        {
+            this.ParamsCount = ExpectedParamsCount;
+        }
 		public override void Execute()
 		{
-			this.ListRepossitory.Delete(this.Index);
+            base.ValidateParams();
+            this.ListRepossitory.Delete(this.Index);
 			this.ListRepossitory.PrintWorkingList();
 		}
 	}

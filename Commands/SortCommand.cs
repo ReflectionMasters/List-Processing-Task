@@ -4,13 +4,14 @@
 
     public class SortCommand : Command
     {
-        public SortCommand(string element, IListRepossitory listRepossitory, int index) 
-            : base(element, listRepossitory, index)
+        public SortCommand(string[] paramStrings, IListRepossitory listRepossitory) 
+            : base(paramStrings, listRepossitory)
         {
         }
 
         public override void Execute()
         {
+            this.ValidateParams();
             this.ListRepossitory.Sort();
             this.ListRepossitory.PrintWorkingList();
         }

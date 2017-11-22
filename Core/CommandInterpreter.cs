@@ -2,28 +2,40 @@
 {
     using System;
     using System.Globalization;
-    using ListProcessing.Interfaces;
+    using Interfaces;
     using System.Reflection;
     using System.Linq;
 
     public class CommandInterpreter : ICommandInterpreter
     {
         private const string commandSuffix = "Command";
+        private const string InitialCommandName = "Initial";
         private IListRepossitory listRepository;
+        private bool isFirstRun;
 
         public CommandInterpreter(IListRepossitory listRepository)
         {
             this.listRepository = listRepository;
+            this.isFirstRun = true;
         }
 
-        public IExecutable InterpretCommand(string command, string element, int index)
+        public IExecutable InterpretCommand(string[] commandTokens)
         {
-            var commandCompleteName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + commandSuffix;
+            string command;
 
-            if (commandCompleteName == commandSuffix)
+            if (this.isFirstRun)
             {
-                commandCompleteName = "InitialCommand";
+                command = InitialCommandName;
+                this.isFirstRun = false;
             }
+            else
+            {
+                command = commandTokens[0];
+                commandTokens = commandTokens.Skip(1).ToArray();
+            }
+
+            string commandCompleteName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + commandSuffix;
+
 
             Type commandType = Assembly
                               .GetExecutingAssembly()
@@ -32,9 +44,8 @@
 
             object[] commandParams =
             {
-                element,
-                this.listRepository,
-                index
+                commandTokens,
+                this.listRepository
             };
 
             if (commandType == null)
@@ -42,7 +53,9 @@
                 throw new InvalidOperationException(Exceptions.InvalidCommandException);
             }
 
-            return (IExecutable)Activator.CreateInstance(commandType, commandParams);
+            IExecutable commandInstance = (IExecutable)Activator.CreateInstance(commandType, commandParams);
+
+            return commandInstance;
         }
     }
 }

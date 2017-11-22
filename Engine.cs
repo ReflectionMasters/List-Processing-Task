@@ -36,45 +36,16 @@
         private void ParseCommand(string commandInput)
         {
             var commandTokens = commandInput.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            var command = commandTokens[0];
 
-            var element = string.Empty;
-            int index = -1;
-
-            // switch is without reverse / delete / sоrt 
-            // as we do not need parameters
-
-            switch (command)
+            try
             {
-                case "append":
-                case "prepend":
-                case "roll":
-                    element = commandTokens[1];
-                    break;
-                case "insert":
-                    index = int.Parse(commandTokens[1]);
-                    element = commandTokens[2];
-                    break;
-                case "count":
-                    element = commandTokens[1];
-                    break;
-                case "delete":
-                    index = int.Parse(commandTokens[1]);
-                    break;
-                case "reverse":
-                case "sort":
-                    break;
-                case "end":
-                    ConsoleManager.WriteLine("Finished");
-                    Environment.Exit(0);
-                    break;
-                default:
-                    command = string.Empty;
-                    element = commandInput;
-                    break;
+                this.Interpreter.InterpretCommand(commandTokens).Execute();
             }
-
-            this.Interpreter.InterpretCommand(command, element, index).Execute();
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
     }
 }

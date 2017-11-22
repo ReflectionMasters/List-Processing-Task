@@ -1,18 +1,21 @@
 ﻿namespace ListProcessing.Commands
 {
-    using ListProcessing.Interfaces;
+    using Interfaces;
 
-    public class InsertCommand : Command
+    public class InsertCommand : IndexCommand
     {
-        public InsertCommand(string element, IListRepossitory listRepossitory, int index) 
-            : base(element, listRepossitory, index)
-        {
+        private const int ExpectedParamsCount = 2;
 
+        public InsertCommand(string[] paramStrings, IListRepossitory listRepossitory)
+            : base(paramStrings, listRepossitory)
+        {
+            this.ParamsCount = ExpectedParamsCount;
         }
 
         public override void Execute()
         {
-            this.ListRepossitory.Insert(this.Index, this.Element);
+            this.ValidateParams();
+            this.ListRepossitory.Insert(this.Index, this.ParamStrings[1]);
             this.ListRepossitory.PrintWorkingList();
         }
     }

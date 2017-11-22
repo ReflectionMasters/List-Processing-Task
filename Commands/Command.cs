@@ -5,29 +5,26 @@
 
     public abstract class Command : IExecutable
     {
-        private string element;
-        private int index;
+        private const int DefaultParamsCount = 0;
+        private string[] paramStrings;
         private IListRepossitory listRepossitory;
 
-        protected Command(string element, IListRepossitory listRepossitory, int index)
+        protected Command(string[] paramStrings, IListRepossitory listRepossitory)
         {
-            this.Index = index;
-            this.Element = element;
+            this.ParamStrings = paramStrings;
             this.ListRepossitory = listRepossitory;
-            this.ParamsCount = 0;
+            this.ParamsCount = DefaultParamsCount;
         }
 
-        protected string Element { get => this.element; set => this.element = value; }
-
-        protected int Index { get => this.index; set => this.index = value; }
+        protected string[] ParamStrings { get => this.paramStrings; set => this.paramStrings = value; }
 
         protected IListRepossitory ListRepossitory { get => this.listRepossitory; set => this.listRepossitory = value; }
 
         protected int ParamsCount { get; set; }
 
-        public virtual void ValidateParams(int parametersCount)
+        protected virtual void ValidateParams()
         {
-            if (parametersCount != ParamsCount)
+            if (ParamStrings.Length != ParamsCount)
             {
                 throw new ArgumentException(Exceptions.InvalidParametersException);
             }

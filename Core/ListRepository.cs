@@ -26,7 +26,13 @@
 
         public void Insert(int index, string element)
         {
+            if (index < 0 || index > workList.Count - 1)
+            {
+                throw new ArgumentException(string.Format(Exceptions.InvalidIndexException, index));
+            }
+
             workList.Insert(index, element);
+
         }
 
         public void Delete(int index)

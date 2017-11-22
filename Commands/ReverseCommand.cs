@@ -2,16 +2,18 @@
 
 namespace ListProcessing.Commands
 {
-	class ReverseCommand :Command
+	class ReverseCommand : Command
 	{
-		public ReverseCommand(string element, IListRepossitory listRepository, int index) 
-			: base (element, listRepository, index)
+		public ReverseCommand(string[] paramStrings, IListRepossitory listRepository) 
+			: base (paramStrings, listRepository)
 		{
 
 		}
+
 		public override void Execute()
 		{
-			this.ListRepossitory.Reverse();
+            this.ValidateParams();
+            this.ListRepossitory.Reverse();
 			this.ListRepossitory.PrintWorkingList();
 		}
 	}

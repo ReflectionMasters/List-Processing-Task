@@ -49,6 +49,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CountCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\IndexCommand.cs" />
     <Compile Include="Commands\InitialCommand.cs" />
     <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="Commands\PrependCommand.cs" />
